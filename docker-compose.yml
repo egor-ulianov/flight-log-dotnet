@@ -1,9 +1,28 @@
-﻿services:
+﻿networks:
+  flightlog:
+    driver: bridge
+
+services:
   flightlognet:
     container_name: flightlognet
     image: flightlognet
     build:
       context: .
       dockerfile: FlightLogNet/Dockerfile
-    ports: 
-      - 44313:8080
+    expose:
+      - 80
+    networks:
+        - flightlog
+  nginx:
+    container_name: nginx
+    image: nginx
+    build:
+      context: ./docker-nginx-ssl/
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - flightlog
+    links:
+      - flightlognet
