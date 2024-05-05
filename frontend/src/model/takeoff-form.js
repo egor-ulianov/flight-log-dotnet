@@ -6,7 +6,7 @@ export class TakeoffForm {
     this.takeoffTime = null;
     this.task = null;
     this.towplane = new Flight();
-    this.glider = new Flight();
+    this.gliders = new Array();
     this.withoutGlider = false;
   }
 

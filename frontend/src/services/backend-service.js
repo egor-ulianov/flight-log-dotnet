@@ -58,7 +58,7 @@ export class BackendService {
       "takeoffTime": this.getTakeoffTimeFromForm(form.takeoffTime),
       "task": form.task,
       "towplane": this.getFlightFromForm(form.towplane),
-      "glider": this.getFlightFromForm(form.glider)
+      "gliders": form.gliders.map(glider => this.getFlightFromForm(glider))
     };
 
     console.debug(json(request));

@@ -1,6 +1,7 @@
 import {BackendService} from '../services/backend-service';
 import {inject} from 'aurelia-framework';
 import {TakeoffForm} from "../model/takeoff-form";
+import {Flight} from "../model/flight";
 
 @inject(BackendService)
 export class CurrentFlights {
@@ -26,6 +27,10 @@ export class CurrentFlights {
         this.clubMembers = data;
       }
     );
+  }
+
+  addGlider() {
+    this.takeoffForm.gliders.push(new Flight());
   }
 
   takeoff() {

@@ -36,14 +36,14 @@
         <td>${getFormattedFlightDuration(flight.towplane)}</td>
 
       </tr>
-      <tr if.bind="flight.glider">
+      <tr repeat.for="glider of flight.gliders">
         <td></td>
-        <td>${flight.glider.airplane.type}</td>
-        <td>${flight.glider.airplane.immatriculation}</td>
-        <td><span class="pilot">${flight.glider.pilot.lastName}</span><span class="copilot" if.bind="flight.glider.copilot">, ${flight.glider.copilot.lastName}</span></td>
-        <td>${flight.glider.task}</td>
-        <td>${flight.glider.takeoffTime | timeFormat}</td>
-        <td>${flight.glider.landingTime | timeFormat}</td>
+        <td>${glider.airplane.type}</td>
+        <td>${glider.airplane.immatriculation}</td>
+        <td><span class="pilot">${glider.pilot.lastName}</span><span class="copilot" if.bind="glider.copilot">, ${glider.copilot.lastName}</span></td>
+        <td>${glider.task}</td>
+        <td>${glider.takeoffTime | timeFormat}</td>
+        <td>${glider.landingTime | timeFormat}</td>
         <td>${getFormattedFlightDuration(flight.glider)}</td>
 
       </tr>

@@ -16,9 +16,18 @@
                view="../components/flightInput.html"
                model.bind="{ flight: takeoffForm.towplane, title: 'Vlečná' }"></compose>
 
-      <compose view-model="../components/flightInput"
-               view="../components/flightInput.html"
-               model.bind="{ flight: takeoffForm.glider, title: 'Kluzák', allowNone: true }"></compose>
+ 
+      <div class="row">
+          <div class="col form-group text-center">
+            <button click.trigger="addGlider()" type="button" class="btn btn-primary btn-lg btn-block">Přidat kluzák</button>
+          </div>
+      </div>
+      
+      <div repeat.for="glider of takeoffForm.gliders">
+        <compose view-model="../components/flightInput"
+                 view="../components/flightInput.html"
+                 model.bind="{ flight: glider, title: 'Kluzák' }"></compose>
+      </div>
 
       <div class="row">
         <div class="col form-group text-center">
