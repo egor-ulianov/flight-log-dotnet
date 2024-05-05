@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <Authors>Profinit EU, s.r.o.</Authors>
     <Company>Profinit EU, s.r.o.</Company>
     <StartupObject>FlightLogNet.Program</StartupObject>
@@ -9,6 +10,7 @@
     <Version>1.0.24</Version>
     <Copyright>Profinit EU, s.r.o.</Copyright>
     <PackageProjectUrl>www.profinit.eu</PackageProjectUrl>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
   </PropertyGroup>
 
   <ItemGroup>

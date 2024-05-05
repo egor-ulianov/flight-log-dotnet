@@ -1,0 +1,9 @@
+﻿services:
+  flightlognet:
+    container_name: flightlognet
+    image: flightlognet
+    build:
+      context: .
+      dockerfile: FlightLogNet/Dockerfile
+    ports: 
+      - 44313:8080

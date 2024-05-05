@@ -10,9 +10,13 @@
 
         void LandFlight(FlightLandingModel landingModel);
 
-        void TakeoffFlight(long? gliderFlightId, long? towplaneFlightId);
+        void TakeoffFlight(IList<long?> gliderFlightIds, long? towplaneFlightId);
 
         long CreateFlight(CreateFlightModel model);
+
+        public IList<FlightModel> GetFlightsOfType(FlightType type);
+
+        public IList<FlightModel> GetAirplanesInAir();
 
         IList<FlightModel> GetAllFlights();
     }

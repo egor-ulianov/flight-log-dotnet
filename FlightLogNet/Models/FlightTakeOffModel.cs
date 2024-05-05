@@ -1,4 +1,6 @@
-﻿namespace FlightLogNet.Models
+﻿using System.Collections.Generic;
+
+namespace FlightLogNet.Models
 {
     using System;
 
@@ -10,6 +12,6 @@
 
         public AirplaneWithCrewModel Towplane { get; set; }
 
-        public AirplaneWithCrewModel Glider { get; set; }
+        public IList<AirplaneWithCrewModel> Gliders { get; set; }
     }
 }

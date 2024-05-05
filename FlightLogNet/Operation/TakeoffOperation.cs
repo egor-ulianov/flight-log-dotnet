@@ -1,4 +1,6 @@
-﻿namespace FlightLogNet.Operation
+﻿using System.Linq;
+
+namespace FlightLogNet.Operation
 {
     using System;
     using System.Collections.Generic;
@@ -23,9 +25,15 @@
             takeOffModel.TakeoffTime = GetLocalTimeByZuluTime(takeOffModel.TakeoffTime);
 
             long? towplaneFlightId = this.CreateFlight(takeOffModel.Towplane, takeOffModel.TakeoffTime, takeOffModel.Task, FlightType.Towplane);
-            long? gliderFlightId = this.CreateFlight(takeOffModel.Glider, takeOffModel.TakeoffTime, takeOffModel.Task, FlightType.Glider);
 
-            flightRepository.TakeoffFlight(gliderFlightId, towplaneFlightId);
+            IList<long?> gliderFlightIds = new List<long?>();
+            foreach (var glider in takeOffModel.Gliders)
+            {
+                gliderFlightIds.Add(this.CreateFlight(glider, takeOffModel.TakeoffTime, takeOffModel.Task, FlightType.Glider));
+            }
+            
+
+            flightRepository.TakeoffFlight(gliderFlightIds, towplaneFlightId);
         }
 
         private long? CreateFlight(AirplaneWithCrewModel airplaneWithCrewModel, DateTime takeoffTime, string task, FlightType type)

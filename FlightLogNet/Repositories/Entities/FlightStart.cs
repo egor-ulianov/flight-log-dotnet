@@ -1,4 +1,6 @@
-﻿namespace FlightLogNet.Repositories.Entities
+﻿using System.Collections.Generic;
+
+namespace FlightLogNet.Repositories.Entities
 {
     using System.ComponentModel.DataAnnotations;
 
@@ -9,6 +11,6 @@
         [Required]
         public Flight Towplane { get; set; }
 
-        public Flight Glider { get; set; }
+        public IList<Flight> Gliders { get; set; }
     }
 }

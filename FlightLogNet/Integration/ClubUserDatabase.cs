@@ -1,4 +1,6 @@
-﻿namespace FlightLogNet.Integration
+﻿using RestSharp;
+
+namespace FlightLogNet.Integration
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -11,7 +13,6 @@
 
     public class ClubUserDatabase(IConfiguration configuration, IMapper mapper) : IClubUserDatabase
     {
-        // TODO 8.1: Přidejte si přes dependency injection configuraci
 
         public bool TryGetClubUser(long memberId, out PersonModel personModel)
         {
@@ -28,14 +29,16 @@
 
         private List<ClubUser> ReceiveClubUsers()
         {
-            // TODO 8.2: Naimplementujte volání endpointu ClubDB pomocí RestSharp
-
-            return null;
+            string baseUrl = configuration["ClubUsersApi"];
+            var client = new RestClient(baseUrl);
+            var request = new RestRequest("club/user");
+            var response = client.Get<List<ClubUser>>(request);
+            return response;
         }
 
         private List<PersonModel> TransformToPersonModel(IList<ClubUser> users)
         {
-            return null;
+            return mapper.Map<List<PersonModel>>(users);
         }
     }
 }

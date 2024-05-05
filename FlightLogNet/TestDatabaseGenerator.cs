@@ -1,4 +1,6 @@
-﻿namespace FlightLogNet
+﻿using System.Collections.Generic;
+
+namespace FlightLogNet
 {
     using System;
     using System.Diagnostics;
@@ -116,12 +118,12 @@
             dbContext.FlightStarts.AddRange(
                 new FlightStart
                 {
-                    Glider = dbContext.Flights.Find(1L),
+                    Gliders = new List<Flight> { dbContext.Flights.Find(1L) },
                     Towplane = dbContext.Flights.Find(4L)
                 },
                 new FlightStart
                 {
-                    Glider = dbContext.Flights.Find(24057L),
+                    Gliders = new List<Flight> { dbContext.Flights.Find(24057L) },
                     Towplane = dbContext.Flights.Find(24058L)
                 },
                 new FlightStart

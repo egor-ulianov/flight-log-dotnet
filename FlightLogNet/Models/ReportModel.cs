@@ -1,9 +1,11 @@
-﻿namespace FlightLogNet.Models
+﻿using System.Collections.Generic;
+
+namespace FlightLogNet.Models
 {
     public class ReportModel
     {
         public FlightModel Towplane { get; set; }
 
-        public FlightModel Glider { get; set; }
+        public IList<FlightModel> Gliders { get; set; }
     }
 }

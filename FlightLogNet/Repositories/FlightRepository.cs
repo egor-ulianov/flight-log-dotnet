@@ -24,9 +24,30 @@
 
             return mapper.ProjectTo<FlightModel>(flights).ToList();
         }
+        
+        public IList<FlightModel> GetFlightsOfType(FlightType type)
+        {
+            using var dbContext = new LocalDatabaseContext(configuration);
+            var flights = dbContext.Flights
+                .Where(flight => flight.Type == type);
+            return mapper.ProjectTo<FlightModel>(flights).ToList();
+        }
 
         // TODO 2.3: Vytvořte metodu, která načte letadla, která jsou ve vzduchu, seřadí je od nejstarších,
         // a v případě shody dá vlečné pred kluzák, který táhne
+
+        public IList<FlightModel> GetAirplanesInAir()
+        {
+            using var dbContext = new LocalDatabaseContext(configuration);
+            var flights = dbContext.Flights
+                .Include(flight => flight.Airplane)
+                .Include(flight => flight.Copilot)
+                .Include(flight => flight.Pilot)
+                .Where(flight => flight.LandingTime == null)
+                .OrderBy(flight => flight.TakeoffTime)
+                .ThenBy(flight => flight.Type);
+            return mapper.ProjectTo<FlightModel>(flights).ToList();
+        }
 
         public void LandFlight(FlightLandingModel landingModel)
         {
@@ -38,13 +59,13 @@
             dbContext.SaveChanges();
         }
 
-        public void TakeoffFlight(long? gliderFlightId, long? towplaneFlightId)
+        public void TakeoffFlight(IList<long?> gliderFlightIds, long? towplaneFlightId)
         {
             using var dbContext = new LocalDatabaseContext(configuration);
 
             var flightStart = new FlightStart
             {
-                Glider = dbContext.Flights.Find(gliderFlightId),
+                Gliders = dbContext.Flights.Where(fl => gliderFlightIds.Contains(fl.Id)).ToList(),
                 Towplane = dbContext.Flights.Find(towplaneFlightId),
             };
 
@@ -80,10 +101,7 @@
             using var dbContext = new LocalDatabaseContext(configuration);
 
             var flightStarts = dbContext.FlightStarts
-                .Include(flight => flight.Glider)
-                .Include(flight => flight.Glider.Airplane)
-                .Include(flight => flight.Glider.Pilot)
-                .Include(flight => flight.Glider.Copilot)
+                .Include(flight => flight.Gliders)
                 .Include(flight => flight.Towplane)
                 .Include(flight => flight.Towplane.Airplane)
                 .Include(flight => flight.Towplane.Pilot)
