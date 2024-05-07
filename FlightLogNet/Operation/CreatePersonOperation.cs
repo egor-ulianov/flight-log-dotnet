@@ -23,6 +23,11 @@
             {
                 return personRepository.AddGuestPerson(personModel);
             }
+            
+            if (personModel.MemberId != GuestId)
+            {
+                return personRepository.CreateClubMember(personModel);
+            }
 
             if (personRepository.TryGetPerson(personModel, out long airplaneId))
             {

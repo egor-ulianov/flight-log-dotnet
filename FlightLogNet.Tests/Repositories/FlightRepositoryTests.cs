@@ -25,7 +25,7 @@ namespace FlightLogNet.Tests.Repositories
             TestDatabaseGenerator.RenewDatabase(configuration);
         }
 
-        [Fact(Skip = "Not correctly implemented.")]
+        [Fact]
         public void GetFlightsOfTypeGlider_Return2Gliders()
         {
             // Arrange
@@ -41,7 +41,7 @@ namespace FlightLogNet.Tests.Repositories
             Assert.True(result.Count == 2, "In test database is 2 gliders.");
         }
 
-        [Fact(Skip = "Not correctly implemented.")]
+        [Fact]
         public void GetAirplanesInAir_ReturnFlightModels()
         {
             // Arrange
@@ -63,11 +63,10 @@ namespace FlightLogNet.Tests.Repositories
 
             // Act
             var result = flightRepository.GetReport();
-            var flights = result.SelectMany(model => model.Gliders.Concat(new[] { model.Towplane })).ToList();
             
             // Assert
             Assert.True(result.Count == 3, "In test database is 3 flight starts");
-            Assert.True(flights[4] == null, "Last flight start should have null glider.");
+            Assert.True(result[2].Gliders.Count == 0, "Last flight start should have null glider.");
         }
     }
 }

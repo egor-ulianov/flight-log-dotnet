@@ -56,7 +56,8 @@ namespace FlightLogNet.Tests.Operation
                 FirstName = "John",
                 LastName = "Smith"
             };
-            this.mockPersonRepository.Setup(repository => repository.AddGuestPerson(personModel)).Returns(10);
+            this.mockPersonRepository.Setup(repository => 
+                repository.AddGuestPerson(personModel)).Returns(10);
 
             // Act
             var result = createPersonOperation.Execute(personModel);
@@ -75,7 +76,8 @@ namespace FlightLogNet.Tests.Operation
             {
                 Address = new AddressModel { City = "NY", PostalCode = "456", Street = "2nd Ev", Country = "USA" },
                 FirstName = "John",
-                LastName = "Smith"
+                LastName = "Smith",
+                MemberId = 10
             };
             
             long id;
@@ -83,14 +85,14 @@ namespace FlightLogNet.Tests.Operation
                     repository.TryGetPerson(personModel, out id))
                 .Returns(false);
             
-            this.mockPersonRepository.Setup(repository => repository.CreateClubMember(personModel)).Returns(10);
+            this.mockPersonRepository.Setup(repository => 
+                repository.CreateClubMember(personModel)).Returns(10);
 
             // Act
             var result = createPersonOperation.Execute(personModel);
 
             // Assert
-
-
+            Assert.True(result == 10);
         }
     }
 }

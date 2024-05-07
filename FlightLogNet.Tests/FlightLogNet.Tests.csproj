@@ -41,6 +41,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ExpectedResult.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Remove="export.csv" />
+    <EmbeddedResource Include="export.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
