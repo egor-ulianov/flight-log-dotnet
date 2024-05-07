@@ -1,18 +1,18 @@
-# Installation and usage instructions for the project
+# Pokyny k instalaci a použití pro projekt
 
-The aim of this project is to provide easy to use tool for logging flights on a local airfield in the middle of the Czech Republic.
+Cílem tohoto projektu je poskytnout snadno použitelný nástroj pro zaznamenávání letů na místním letišti uprostřed České republiky.
 
-## Docker launch
+## Spuštění přes Docker
 ```
 docker compose build --no-cache
 docker compose up
 ```
 
-Tested on MacOS Sonoma 14.1 with Docker version 4.29.0(145265) installed.
+Otestováno na MacOS Sonoma 14.1 s nainstalovanou verzí Dockeru 4.29.0(145265).
 
-For testing purposes, please set flightlog.cz domain to your local IP address in your hosts file.
+Pro účely testování prosím nastavte doménu flightlog.cz na vaši lokální IP adresu ve vašem souboru hosts.
 ```
 127.0.0.1 flightlog.cz
 ```
 
-After that, you can access the application on [https://flightlog.cz/](https://flightlog.cz/)
+Poté budete moci přistupovat k aplikaci na [https://flightlog.cz/](https://flightlog.cz/)
