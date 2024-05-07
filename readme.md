@@ -3,7 +3,7 @@
 Cílem tohoto projektu je poskytnout snadno použitelný nástroj pro zaznamenávání letů na místním letišti uprostřed České republiky.
 
 Před spuštemím je nutné mít nainstalovaný Docker a Docker Compose.
-Taky je nutné nakopirovat soubory nginx-selfsigned.crt a nginx-selfsigned.key ze složky Certifikates v dodavce do složky docker-nginx-ssl a nainstalovat .crt certifikát na klientské zařízení pro správné fungování SSL.
+Taky je nutné nakopirovat soubory nginx-selfsigned.crt a nginx-selfsigned.key ze složky Certificates v dodavce do složky docker-nginx-ssl a nainstalovat .crt certifikát na klientské zařízení pro správné fungování SSL.
 
 ## Spuštění přes Docker
 ```
